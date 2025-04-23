@@ -1,9 +1,10 @@
-from database import SessionLocal
-from models import Item, User
+from app.core.database import SessionLocal
+from app.core.models import Item, User
+from secrets import token_hex
 
 
 def create_items():
-    from data import items
+    from app.core.data import items
     session = SessionLocal()
     items = [
         Item(**item) for item in items
@@ -14,10 +15,10 @@ def create_items():
 
 
 def create_users():
-    from data import users
+    from app.core.data import users
     session = SessionLocal()
     users = [
-        User(**user) for user in users
+        User(**user, token=token_hex(16)) for user in users
     ]
 
     session.add_all(users)

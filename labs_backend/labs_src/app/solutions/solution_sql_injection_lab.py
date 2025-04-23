@@ -1,7 +1,7 @@
-from sqlalchemy import text, select
+from sqlalchemy import text
 from sqlalchemy.orm import Session
-from models import Item, User
-from schemas import UserAuth
+from app.core.models import Item, User
+from app.core.schemas import UserLogin
 
 
 # Get released item by name
@@ -23,7 +23,7 @@ def delete_item_by_name(session: Session, name: str) -> bool:
 
 
 # Check user's credentials
-def user_auth(session: Session, user: UserAuth) -> User | None:
+def user_auth(session: Session, user: UserLogin) -> User | None:
     result = (session.query(User)
               .filter(User.username == user.username, User.password == user.password).first())
     return result

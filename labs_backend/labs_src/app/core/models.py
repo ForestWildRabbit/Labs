@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String, Boolean
-from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime
+from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
 
@@ -19,3 +19,4 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String(255), index=True)
     password = Column(String(255))
+    token = Column(String(255), index=True)
