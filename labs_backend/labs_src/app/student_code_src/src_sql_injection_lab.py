@@ -1,10 +1,13 @@
 from sqlalchemy import text
 from sqlalchemy.orm import Session
-from models import Item, User
-from schemas import UserAuth
+from app.core.models import Item, User
+from app.core.schemas import UserLogin
+
+# tested by /app/tests/test_sql_injection_lab.py
+
+# Fix raw sql queries to make the application safe to sql injections.
 
 
-# Get released item by name
 def get_item_by_name(session: Session, name: str) -> Item | None:
     raw_sql = text(f"SELECT * FROM items WHERE name = '{name}' AND released = TRUE")
     result = session.execute(raw_sql)
@@ -17,8 +20,7 @@ def delete_item_by_name(session: Session, name: str) -> bool:
     return result.rowcount > 0
 
 
-# Check user's credentials
-def user_auth(session: Session, user: UserAuth) -> User | None:
+def user_auth(session: Session, user: UserLogin) -> User | None:
     raw_sql = text(f"SELECT * FROM users WHERE username = '{user.username}' AND password = '{user.password}'")
     result = session.execute(raw_sql)
     return result.fetchone()

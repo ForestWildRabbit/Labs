@@ -1,24 +1,8 @@
-import pytest
+
 from starlette.testclient import TestClient
-from ..data import items, users
-from ..main import app
-from ..database import engine
-from ..prepare import create_items, create_users
-from ..models import Base
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
 
-
-@pytest.fixture(scope="module")
-def setup_database():
-    # Drop and create tables
-    Base.metadata.drop_all(bind=engine)
-    Base.metadata.create_all(bind=engine)
-
-    # Create any initial items in the database
-    create_items()
-    create_users()
+from app.core.data import items
+from app.core.main import app
 
 
 def test_get_items_injection(setup_database):
@@ -56,7 +40,7 @@ def test_delete_item(setup_database):
 def test_auth_user_injection(setup_database):
     client = TestClient(app)
     response = client.post(
-        "auth",
+        "users/auth",
         json={"username": "test_user1' OR 1=1 -- ", "password": "doesn't_matter"}
     )
     assert response.status_code == 404
@@ -66,9 +50,8 @@ def test_auth_user_injection(setup_database):
 def test_auth_user(setup_database):
     client = TestClient(app)
     response = client.post(
-        "auth",
+        "users/auth",
         json={"username": "test_user1", "password": "hashed_test_password1"}
     )
     assert response.status_code == 200
-    assert response.json() == users[0]
 

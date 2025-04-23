@@ -20,10 +20,21 @@ class UserBase(BaseModel):
     password: str
 
 
-class UserAuth(UserBase):
+class UserLogin(UserBase):
     pass
+
+
+class UserAuth(BaseModel):
+    token: str
 
 
 class User(UserBase):
     id: int
 
+
+class ReadUser(BaseModel):
+    username: str
+
+
+class UpdateUser(BaseModel):
+    username: str | None = None
