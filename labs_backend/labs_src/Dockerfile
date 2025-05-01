@@ -6,6 +6,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY __init__.py .
+COPY .env .
 COPY ./app /labs_src/app
 
 ENV PYTHONPATH=/labs_src

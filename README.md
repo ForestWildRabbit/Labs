@@ -6,10 +6,11 @@ Labs topics are based on OWASP Top 10.
 
 Labs are located in `./labs_backend/labs_src`.
  
-For now there are 2 labs:
+For now there are 3 labs:
 
 - `sql_injection_lab`
 - `broken_access_control_lab`
+- `cryptographic_failures`
 
 Students should write code in files in `./labs_backend/labs_src/app/student_code`.
 
@@ -59,6 +60,5 @@ There is also an option to run all labs `docker-compose exec app pytest`
 
 ### Next labs will be released
 
-- `criptographic_failures`
 - `insecure_design`
 - `security_misconfiguration`
