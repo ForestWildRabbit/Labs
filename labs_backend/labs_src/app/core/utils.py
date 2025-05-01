@@ -1,5 +1,5 @@
 
-from sqlalchemy import update, select
+from sqlalchemy import update
 from sqlalchemy.orm import Session
 from app.core.models import User
 from app.core.schemas import UpdateUser

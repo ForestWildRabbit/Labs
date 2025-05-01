@@ -35,6 +35,7 @@ services:
       - DB_PORT=${DB_PORT}
       - MYSQL_ROOT_PASSWORD=${DB_PASS}
       - MYSQL_DATABASE=${DB_NAME}
+      - SECRET_KEY=${SECRET_KEY}
 
     depends_on:
       db:
