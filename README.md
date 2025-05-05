@@ -10,7 +10,7 @@ For now there are 3 labs:
 
 - `sql_injection_lab`
 - `broken_access_control_lab`
-- `cryptographic_failures`
+- `cryptographic_failures_lab`
 
 Students should write code in files in `./labs_backend/labs_src/app/student_code`.
 
@@ -57,6 +57,29 @@ Run tests `docker-compose exec app pytest <path_to_test_file>`
 e.g. `docker-compose exec app pytest ./app/tests/test_sql_injection_lab.py`
 
 There is also an option to run all labs `docker-compose exec app pytest`
+
+
+### API
+
+Launch `docker-compose up --build`
+
+- POST `127.0.0.1:8000/upload`
+
+  BODY
+  ```
+  {
+      file: File
+      lab_name: string
+  }
+  ```
+    
+  RESPONSE
+  Archive (.zip file) of `labs_src` directory with uploaded file.
+
+- STATIC `127.0.0.1:8000/static`
+  Mounted `labs_src` directory
+  Fetch file example `http://127.0.0.1:8000/static/app/student_code/code_sql_injection_lab.py`
+  
 
 ### Next labs will be released
 
