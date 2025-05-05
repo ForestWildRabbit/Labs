@@ -1,0 +1,8 @@
+services:
+  app:
+    container_name: labs_api
+    build: .
+    volumes:
+      - ./app:/app
+    ports:
+      - "8000:8000"
