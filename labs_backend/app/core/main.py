@@ -2,6 +2,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, UploadFile, File, HTTPException, Response, Form
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from enum import Enum
 import shutil
 from fastapi.responses import FileResponse
@@ -26,6 +27,16 @@ app.mount("/static", NoCacheStaticFiles(directory="labs_src"), name="labs")
 
 UPLOAD_DIR = Path("labs_src/app/student_code")
 SRC_DIR = Path("labs_src/app/student_code_src")
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.post("/upload")

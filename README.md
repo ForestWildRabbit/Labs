@@ -77,6 +77,7 @@ Launch `docker-compose up --build`
   Archive (.zip file) of `labs_src` directory with uploaded file.
 
 - STATIC `127.0.0.1:8000/static`
+
   Mounted `labs_src` directory
   Fetch file example `http://127.0.0.1:8000/static/app/student_code/code_sql_injection_lab.py`
   
