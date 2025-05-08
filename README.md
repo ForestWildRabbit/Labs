@@ -6,7 +6,7 @@ Labs topics are based on OWASP Top 10.
 
 Labs are located in `./labs_backend/labs_src`.
  
-For now there are 3 labs:
+For now there are 4 labs:
 
 - `sql_injection_lab`
 - `broken_access_control_lab`
@@ -86,3 +86,4 @@ Launch `docker-compose up --build`
 ### Next labs will be released
 
 - `insecure_design`
+- `security_logging_failures`
