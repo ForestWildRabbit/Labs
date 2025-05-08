@@ -11,6 +11,7 @@ For now there are 3 labs:
 - `sql_injection_lab`
 - `broken_access_control_lab`
 - `cryptographic_failures_lab`
+- `security_misconfiguration_lab`
 
 Students should write code in files in `./labs_backend/labs_src/app/student_code`.
 
@@ -85,4 +86,3 @@ Launch `docker-compose up --build`
 ### Next labs will be released
 
 - `insecure_design`
-- `security_misconfiguration`

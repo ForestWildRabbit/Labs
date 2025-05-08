@@ -20,3 +20,7 @@ users = [
     for i in range(1, USERS_COUNT + 1)
 ]
 
+ADMIN_USERNAME = "test_admin"
+ADMIN_PASSWORD = "test_admin_password"
+
+

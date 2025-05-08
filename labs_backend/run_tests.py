@@ -8,6 +8,7 @@ path_table = {
     'sql_injection_lab': "./app/tests/test_sql_injection_lab.py",
     'broken_access_control_lab': "./app/tests/test_broken_access_control_lab.py",
     'cryptographic_failures_lab': "./app/tests/test_cryptographic_failures_lab.py",
+    'security_misconfiguration_lab': "./app/tests/test_security_misconfiguration_lab.py",
     'all': "./app/tests"
 }
 

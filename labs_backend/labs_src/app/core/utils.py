@@ -1,4 +1,3 @@
-
 from sqlalchemy import update
 from sqlalchemy.orm import Session
 from app.core.models import User
