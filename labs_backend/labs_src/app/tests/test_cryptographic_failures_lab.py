@@ -2,6 +2,11 @@
 from starlette.testclient import TestClient
 from app.core.main import app
 
+"""
+There are some tests for cryptographic_failures_lab.
+Some tests will try to authorize with a generated token or without any credentials.
+Your task is to make the given jwt authorization to work correctly.
+"""
 
 def test_jwt_auth_unauthorized_header_missing(setup_database):
     client = TestClient(app)
