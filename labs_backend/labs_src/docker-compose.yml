@@ -23,8 +23,6 @@ services:
   app:
     container_name: lab_backend
     build: .
-    volumes:
-      - ./app:/app
     ports:
       - "8001:8001"
     environment:
