@@ -6,6 +6,14 @@ from app.core.main import app
 import filecmp
 
 STATIC_PATH = '/labs_src/app/static'
+SECRET_FILENAME = 'secret'
+
+
+"""
+There are some tests for insecure_design_lab.
+Some tests will try to simulate a directory traversal attack or upload wrong file types.
+Your task is to make the file upload safe.
+"""
 
 
 def test_png_image_file_upload(setup_database):
@@ -63,15 +71,14 @@ def test_script_file_upload(setup_database):
 def test_traversal_image_file_upload(setup_database):
     client = TestClient(app)
     image_file_path = f"{STATIC_PATH}/images/image.png"
-    secret_filename = 'secret'
-    secret_file_path = f"{STATIC_PATH}/secrets/{secret_filename}.png"
-    secret_file_path_copy = f"{STATIC_PATH}/secrets/{secret_filename}_copy.png"
-    uploaded_image_file_path = f"{STATIC_PATH}/uploaded/secret.png"
+    secret_file_path = f"{STATIC_PATH}/secrets/{SECRET_FILENAME}.png"
+    secret_file_path_copy = f"{STATIC_PATH}/secrets/{SECRET_FILENAME}_copy.png"
+    uploaded_image_file_path = f"{STATIC_PATH}/uploaded/{SECRET_FILENAME}.png"
 
     with open(image_file_path, "rb") as f:
         response = client.post(
             "file/upload",
-            files={"file": (f"../secrets/{secret_filename}.png", f, "image/png")}
+            files={"file": (f"../secrets/{SECRET_FILENAME}.png", f, "image/png")}
         )
 
     assert filecmp.cmp(secret_file_path_copy, secret_file_path, shallow=False) is True, \
@@ -79,4 +86,4 @@ def test_traversal_image_file_upload(setup_database):
     assert filecmp.cmp(image_file_path, uploaded_image_file_path, shallow=False) is True, \
         'The uploaded file must be in /app/static/uploaded directory'
     assert response.status_code == 200
-    assert response.json() == {"filename": f"{secret_filename}.png"}
+    assert response.json() == {"filename": f"{SECRET_FILENAME}.png"}

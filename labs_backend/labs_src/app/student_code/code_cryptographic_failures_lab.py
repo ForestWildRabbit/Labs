@@ -7,9 +7,11 @@ from app.core.models import User
 # tested by /app/tests/test_cryptographic_failures_lab.py
 
 '''
-Fix the functions 'encode_user' and 'decode_user'.
-You should use algorithm "HS256" and verify jwt-tokens by SECRET_KEY from app.core.config.
-Payload should contain {"username": "<username>"}.
+There is an example of unsafe jwt authentication, it accepts generated tokens.
+Fix the functions 'encode_user' and 'decode_user' to pass the tests.
+You should use algorithm "HS256" and verify jwt-tokens by SECRET_KEY from "app.core.config".
+Authorization header format "Authorization: Bearer <token>"
+Payload must contain {"username": "<username>"}.
 '''
 
 def encode_user(user: User) -> str:

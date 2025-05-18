@@ -5,6 +5,12 @@ from starlette.testclient import TestClient
 from app.core.data import ADMIN_USERNAME, ADMIN_PASSWORD
 from app.core.main import app
 
+"""
+There are some tests for security_misconfiguration_lab.
+Some tests will try to access to api documentation without authorization or with wrong credentials.
+Your task is to make the api documentation available for admin user only.
+"""
+
 
 def get_basic_auth_header(username: str, password: str):
     credentials = f"{username}:{password}"

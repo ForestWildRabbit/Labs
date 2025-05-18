@@ -4,6 +4,12 @@ from starlette.testclient import TestClient
 from app.core.data import items
 from app.core.main import app
 
+"""
+There are some tests for sql_injection_lab.
+Some tests will try to simulate sql injection attacks.
+Your task is to make the application safe to sql injections.
+"""
+
 
 def test_get_items_injection(setup_database):
     client = TestClient(app)

@@ -1,6 +1,13 @@
 from starlette.testclient import TestClient
 from app.core.main import app
 
+"""
+There are some tests for broken_access_control_lab.
+Some tests will try to make 'patch' requests (that changes data) authorized.
+The user can change only their data, not the other users' data.
+Your task is to add access control to this application.
+"""
+
 
 def test_update_users_unauthorized_header_missing(setup_database):
     client = TestClient(app)
