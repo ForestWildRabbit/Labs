@@ -1,15 +1,20 @@
 
 from fastapi import Depends, HTTPException, Response, UploadFile, File
+from slowapi.util import get_remote_address
 from sqlalchemy.orm import Session
+
+from app.core.data import mfa_password, mfa_token
 from app.core.utils import update_user_by_request, get_user_by_id
 from app.student_code.code_cryptographic_failures_lab import encode_user, decode_user
 from app.student_code.code_broken_access_control_lab import is_owner
 from app.student_code.code_insecure_design_lab import upload_image_handler
+from app.student_code.code_security_logging_failures_lab import simulate_mfa_authentication
 from app.student_code.code_sql_injection_lab import get_item_by_name, user_auth, delete_item_by_name
 
 from app.core.database import get_db
-from app.core.schemas import Item, UserLogin, UpdateUser, UserAuth, ReadUser
-from fastapi import APIRouter
+from app.core.schemas import Item, UserLogin, UpdateUser, UserAuth, ReadUser, UserAuthMFA
+from fastapi import APIRouter, Request
+from slowapi import Limiter
 
 items_router = APIRouter(
     prefix='/items',
@@ -91,3 +96,18 @@ file_router = APIRouter(
 @file_router.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
     return await upload_image_handler(file)
+
+
+mfa_router = APIRouter(
+    prefix='/mfa',
+    tags=['MFA']
+)
+
+limiter = Limiter(key_func=get_remote_address)
+
+
+@mfa_router.post("/login")
+@limiter.limit("20000/day")
+async def mfa_login(user: UserAuthMFA, request: Request):
+    mfa_username = "test_mfa_user"
+    return simulate_mfa_authentication(user, mfa_username, mfa_password, mfa_token)

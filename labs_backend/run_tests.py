@@ -10,6 +10,7 @@ path_table = {
     'cryptographic_failures_lab': "./app/tests/test_cryptographic_failures_lab.py",
     'security_misconfiguration_lab': "./app/tests/test_security_misconfiguration_lab.py",
     'insecure_design_lab': "./app/tests/test_insecure_design_lab.py",
+    'security_logging_failures_lab': "./app/tests/test_security_logging_failures_lab.py",
     'all': "./app/tests"
 }
 
