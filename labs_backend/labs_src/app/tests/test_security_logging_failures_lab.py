@@ -4,6 +4,13 @@ from starlette.testclient import TestClient
 from app.core.data import most_common_passwords
 from app.core.main import app
 
+"""
+There are some tests for security_logging_failures_lab.
+Some tests will try to enumerate passwords and totp tokens to successfully authenticate.
+Your task is to make such enumerations impossible.
+Keep application logging safe, don't provide sensitive data back to the client.
+"""
+
 
 def find_correct_password(client: TestClient, username: str) -> str:
     for password in most_common_passwords:
