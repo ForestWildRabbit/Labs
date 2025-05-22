@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class ItemBase(BaseModel):
@@ -26,6 +26,12 @@ class UserLogin(UserBase):
 
 class UserAuth(BaseModel):
     token: str
+
+
+class UserAuthMFA(BaseModel):
+    username: str = Field(min_length=4, max_length=20)
+    password: str
+    totp_token: str
 
 
 class User(UserBase):
