@@ -12,6 +12,9 @@ class LabName(str, Enum):
     sql_injection_lab = "sql_injection_lab"
     broken_access_control_lab = "broken_access_control_lab"
     cryptographic_failures_lab = "cryptographic_failures_lab"
+    security_misconfiguration_lab = "security_misconfiguration_lab"
+    insecure_design_lab = "insecure_design_lab"
+    security_logging_failures_lab = "security_logging_failures_lab"
 
 
 class NoCacheStaticFiles(StaticFiles):
