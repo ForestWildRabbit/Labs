@@ -1,5 +1,5 @@
 import pytest
-import pyyaml
+import yaml
 import os
 import io
 from student_code.code_C01_vulnerable_dependencies_lab import load_config

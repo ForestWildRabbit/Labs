@@ -11,6 +11,18 @@ path_table = {
     'security_misconfiguration_lab': "./app/tests/test_security_misconfiguration_lab.py",
     'insecure_design_lab': "./app/tests/test_insecure_design_lab.py",
     'security_logging_failures_lab': "./app/tests/test_security_logging_failures_lab.py",
+
+    'C01_vulnerable_dependencies_lab' : "./app/tests/test_C01_vulnerable_dependencies",
+    'C02_access_control_lab' : "./app/tests/test_C02_access_control",
+    'C03_file_handling_lab' : "./app/tests/test_C03_file_handling",
+    'C04_insufficient_authentication_lab' : "./app/tests/test_C04_insufficient_authentication",
+    'C05_code_injection_lab' : "./app/tests/test_C05_code_injection",
+    'C06_command_injection_lab' : "./app/tests/test_C06_command_injection",
+    'C07_weak_cryptography_lab' : "./app/tests/test_C07_weak_cryptography",
+    'C08_privilege_escalation_lab' : "./app/tests/test_C08_privilege_escalation",
+    'C09_authentication_bypass_lab' : "./app/tests/test_C09_authentication_bypass",
+    'C10_race_conditions_lab' : "./app/tests/test_C10_race_conditions",
+
     'all': "./app/tests"
 }
 
