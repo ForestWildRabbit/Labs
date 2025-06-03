@@ -15,6 +15,16 @@ class LabName(str, Enum):
     security_misconfiguration_lab = "security_misconfiguration_lab"
     insecure_design_lab = "insecure_design_lab"
     security_logging_failures_lab = "security_logging_failures_lab"
+    C01_vulnerable_dependencies_lab = "C01_vulnerable_dependencies_lab"
+    C02_access_control_lab = "C02_access_control_lab"
+    C03_file_handling_lab = "C03_file_handling_lab",
+    C04_insufficient_authentication_lab = "C04_insufficient_authentication_lab",
+    C05_code_injection_lab = "C05_code_injection_lab",
+    C06_command_injection_lab = "C06_command_injection_lab",
+    C07_weak_cryptography_lab = "C07_weak_cryptography_lab",
+    C08_privilege_escalation_lab = "C08_privilege_escalation_lab",
+    C09_authentication_bypass_lab = "C09_authentication_bypass_lab",
+    C10_race_conditions_lab = "C10_race_conditions_lab",
 
 
 class NoCacheStaticFiles(StaticFiles):
