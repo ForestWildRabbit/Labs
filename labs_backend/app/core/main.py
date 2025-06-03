@@ -6,6 +6,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from enum import Enum
 import shutil
 from fastapi.responses import FileResponse
+from py_eureka_client import eureka_client
+
+import os
 
 
 class LabName(str, Enum):
@@ -41,6 +44,9 @@ app.mount("/static", NoCacheStaticFiles(directory="labs_src"), name="labs")
 UPLOAD_DIR = Path("labs_src/app/student_code")
 SRC_DIR = Path("labs_src/app/student_code_src")
 
+EUREKA_URL = os.environ.get("EUREKA_URL", "http://discovery-server:8761/eureka")
+APP_NAME = os.environ.get("APP_NAME", "labs-module")
+
 origins = ["*"]
 
 app.add_middleware(
@@ -50,6 +56,23 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.on_event("startup")
+def startup_event():
+    try:
+        eureka_client.init(
+            eureka_server=EUREKA_URL,
+            app_name=APP_NAME,
+            instance_port=8000
+        )
+    except RuntimeError:
+        print("Could not connect to Eureka")
+
+
+@app.on_event("shutdown")
+def shutdown_event():
+    eureka_client.stop()
 
 
 @app.post("/upload")
